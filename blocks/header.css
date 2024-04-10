@@ -1,0 +1,28 @@
+.header {
+  margin: 0 0 40px;
+  position: relative;
+  max-width: 100%;
+  height: 74px;
+  border-bottom: 1px solid;
+  border-color: #545454;
+}
+
+.header__logo {
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 173px;
+  height: 33px;
+}
+
+@media screen and (max-width: 480px) {
+  .header {
+    height: 56px;
+  }
+
+  .header__logo {
+    width: 126px;
+    height: 24px;
+    left: 27px;
+  }
+}

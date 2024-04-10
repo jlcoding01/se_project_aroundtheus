@@ -1,0 +1,59 @@
+.elements__container {
+  list-style-type: none;
+  color: black;
+  display: grid;
+  margin: 0;
+  padding: 0;
+  grid-template-columns: repeat(auto-fit, 282px);
+  grid-gap: 20px 17px;
+}
+
+.element {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  width: 282px;
+  height: 361px;
+  border: 0px;
+  border-radius: 3%;
+  overflow: hidden;
+}
+
+.element__image {
+  width: 282px;
+  height: 282px;
+}
+
+.element__description {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 25px 30px 25px 20px;
+}
+
+.element__title {
+  font-size: 24px;
+  line-height: 29px;
+  font-weight: 900;
+  margin: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.element__like-button {
+  background: transparent url(../images/like-button.svg) center no-repeat;
+  width: 21px;
+  height: 18px;
+  border: 0;
+  margin: 0;
+}
+
+.element__like-button:hover {
+  opacity: 50%;
+}
+
+@media screen and (max-width: 920px) {
+  .elements__container {
+    justify-content: center;
+  }
+}

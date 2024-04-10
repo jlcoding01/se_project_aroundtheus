@@ -1,0 +1,35 @@
+.page {
+  background-color: black;
+  color: #fff;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  padding-top: 45px;
+  padding-bottom: 60px;
+}
+
+.page__content {
+  width: 100%;
+  max-width: 880px;
+  min-width: 320px;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.page__section {
+  max-width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 920px) {
+  .page__content {
+    margin: 0 20px;
+  }
+
+  .page__section {
+    margin: 0 20px;
+    max-width: calc(100% - 40px);
+  }
+}
