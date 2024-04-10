@@ -20,6 +20,20 @@ The way you'll do this at work is by exporting images directly from Figma — we
 
 Good luck and have fun!
 
+**Project**
+
+Creat a responsive website that fits different screen sizes.
+
+**Descriptoions**
+
+This websites allow users to post scenery pictures all around U.S. Users can create profile, set up names and brief description of themselves, and upload personal photos. There is a add button where users and create new posts. Each post contains a picture, location and a like button.
+
+**Techniques**
+
+Html: BEM methdology
+
+CSS: flex, grid, calc function, media quries, hover and other basic css functions.
+
 **GitHub Pages**
 
 - [Link to the project on GitHub Pages](https://jlcoding01.github.io/se_project_aroundtheus/)
