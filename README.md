@@ -37,3 +37,7 @@ CSS: flex, grid, calc function, media quries, hover and other basic css function
 **GitHub Pages**
 
 - [Link to the project on GitHub Pages](https://jlcoding01.github.io/se_project_aroundtheus/)
+
+**Video Link**
+
+- [Link to the video](https://drive.google.com/file/d/1Xvo8l0zBPzOXSIsmVW-PRaZ8JTKQ1hbP/view?usp=sharing)
