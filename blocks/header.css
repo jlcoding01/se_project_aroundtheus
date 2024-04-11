@@ -1,16 +1,13 @@
 .header {
-  margin: 0 0 40px;
+  margin: 45px 0 40px;
   position: relative;
   max-width: 100%;
-  height: 74px;
+  min-height: 73px;
   border-bottom: 1px solid;
-  border-color: #545454;
+  border-color: rgba(84, 84, 84, 0.7);
 }
 
 .header__logo {
-  top: 0;
-  left: 0;
-  position: absolute;
   width: 173px;
   height: 33px;
 }
@@ -23,6 +20,6 @@
   .header__logo {
     width: 126px;
     height: 24px;
-    left: 27px;
+    margin-left: 27px;
   }
 }
