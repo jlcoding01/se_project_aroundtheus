@@ -80,6 +80,7 @@
 
   .profile__subtitle {
     font-size: 14px;
+    line-height: 17px;
   }
 
   .profile__add-button {
@@ -112,7 +113,6 @@
   }
 
   .profile__subtitle {
-    font-size: 14px;
     margin-right: 43px;
     margin-left: 43px;
   }

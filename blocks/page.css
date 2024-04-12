@@ -2,8 +2,6 @@
   background-color: black;
   color: #fff;
   font-family: "Inter", Arial, Helvetica, sans-serif;
-  /* padding-top: 45px; */
-  /* padding-bottom: 60px; */
 }
 
 .page__content {
@@ -25,7 +23,6 @@
 
 @media screen and (max-width: 920px) {
   .page__content {
-    margin: 0 20px;
     max-width: 100%;
   }
 
