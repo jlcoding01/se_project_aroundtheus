@@ -83,9 +83,9 @@
     line-height: 17px;
   }
 
-  .profile__add-button {
+  /* .profile__add-button {
     width: 50px;
-  }
+  } */
 }
 
 @media screen and (max-width: 450px) {
@@ -104,7 +104,6 @@
     font-size: 22px;
     line-height: 27px;
     text-align: center;
-    margin-left: 62px;
   }
 
   .profile__edit-button {
@@ -113,12 +112,19 @@
   }
 
   .profile__subtitle {
-    margin-right: 43px;
-    margin-left: 43px;
+    width: 282px;
+    text-align: center;
   }
 
   .profile__add-button {
     margin: 0;
     width: 282px;
+  }
+}
+
+@media screen and (max-width: 920px) {
+  .profile {
+    margin-left: 20px;
+    margin-right: 20px;
   }
 }

@@ -20,6 +20,8 @@
 @media screen and (max-width: 620px) {
   .footer {
     margin-left: calc(50% - 141px);
+    margin-top: 48px;
+    margin-bottom: 36px;
   }
 
   .footer__copyright {

@@ -18,8 +18,17 @@
   }
 
   .header__logo {
+    position: absolute;
     width: 126px;
     height: 24px;
     margin-left: 27px;
+    bottom: 32px;
+  }
+}
+
+@media screen and (max-width: 920px) {
+  .header {
+    margin-left: 20px;
+    margin-right: 20px;
   }
 }
