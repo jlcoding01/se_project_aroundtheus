@@ -15,7 +15,6 @@
 .profile__info {
   display: grid;
   grid-template-areas: "title button" "subtitle subtitle";
-  /* grid-template-columns: minmax(auto, 373px) auto; */
   gap: 7px 18px;
   align-content: center;
   align-items: center;
@@ -82,16 +81,13 @@
     font-size: 14px;
     line-height: 17px;
   }
-
-  /* .profile__add-button {
-    width: 50px;
-  } */
 }
 
 @media screen and (max-width: 450px) {
   .profile {
     flex-direction: column;
     justify-content: center;
+    margin-bottom: 36px;
   }
 
   .profile__info {

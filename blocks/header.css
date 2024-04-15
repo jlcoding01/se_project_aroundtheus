@@ -2,7 +2,7 @@
   margin: 45px 0 40px;
   position: relative;
   max-width: 100%;
-  min-height: 73px;
+  /* min-height: 73px; */
   border-bottom: 1px solid;
   border-color: rgba(84, 84, 84, 0.7);
 }
@@ -10,6 +10,14 @@
 .header__logo {
   width: 173px;
   height: 33px;
+  margin-bottom: 41px;
+}
+
+@media screen and (max-width: 920px) {
+  .header {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
 }
 
 @media screen and (max-width: 480px) {
@@ -18,17 +26,9 @@
   }
 
   .header__logo {
-    position: absolute;
     width: 126px;
     height: 24px;
     margin-left: 27px;
-    bottom: 32px;
-  }
-}
-
-@media screen and (max-width: 920px) {
-  .header {
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-bottom: 32px;
   }
 }
