@@ -107,10 +107,32 @@
           </ul>
         </section>
       </main>
-
       <footer class="footer">
         <p class="footer__copyright">© 2022 Around The U.S.</p>
       </footer>
+    </div>
+    <div class="modal modal__opened">
+      <div class="modal__container">
+        <p class="modal__title">Edit profile</p>
+        <button class="modal__close"></button>
+        <form class="modal__form">
+          <fieldset class="form__fieldset">
+            <input
+              type="text"
+              class="form__input"
+              name="title"
+              placeholder="Name"
+            />
+            <input
+              type="text"
+              class="form__input"
+              name="description"
+              placeholder="Description"
+            />
+          </fieldset>
+          <button class="modal__button-save">Save</button>
+        </form>
+      </div>
     </div>
     <script src="./scripts/index.js"></script>
   </body>
