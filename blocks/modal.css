@@ -10,7 +10,7 @@
   z-index: 999;
 }
 
-.modal__opened {
+.modal_opened {
   display: flex;
 }
 
@@ -60,7 +60,7 @@
   flex-direction: column;
 }
 
-.form__fieldset {
+.modal__fieldset {
   display: flex;
   flex-direction: column;
   margin: 54px 0 48px;
@@ -72,7 +72,7 @@
   line-height: 17px;
 }
 
-.form__input {
+.modal__input {
   border: none;
   border-bottom: 1px solid;
   border-color: rgba(0, 0, 0, 0.5);
@@ -112,7 +112,7 @@
     line-height: 22px;
   }
 
-  .form__fieldset {
+  .modal__fieldset {
     margin: 75px 0 45px;
   }
 
