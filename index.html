@@ -33,7 +33,17 @@
 
         <section class="elements page__section">
           <ul class="elements__container">
-            <li class="elements__cards">
+            <template id="card-templete">
+              <li class="elements__cards">
+                <img class="elements__image" />
+                <div class="elements__description">
+                  <h2 class="elements__title"></h2>
+                  <button class="elements__like-button" type="button"></button>
+                </div>
+              </li>
+            </template>
+
+            <!-- <li class="elements__cards">
               <img
                 src="./images/yosemite.jpg"
                 alt="yosemite"
@@ -103,7 +113,7 @@
                 <h2 class="elements__title">Lago di Braies</h2>
                 <button class="elements__like-button" type="button"></button>
               </div>
-            </li>
+            </li> -->
           </ul>
         </section>
       </main>
@@ -119,18 +129,18 @@
           <fieldset class="modal__fieldset">
             <input
               type="text"
-              class="modal__input"
+              class="modal__input modal__input_name"
               name="title"
               placeholder="Name"
             />
             <input
               type="text"
-              class="modal__input"
+              class="modal__input modal__input_job"
               name="description"
               placeholder="Description"
             />
           </fieldset>
-          <button class="modal__button-save">Save</button>
+          <button class="modal__button-save" type="submit">Save</button>
         </form>
       </div>
     </div>
