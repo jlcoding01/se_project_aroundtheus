@@ -103,8 +103,10 @@
   }
 
   .modal__close {
-    top: -54px;
+    top: -50px;
     right: 0;
+    width: 26px;
+    height: 26px;
   }
 
   .modal__title {

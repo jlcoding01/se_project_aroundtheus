@@ -1,4 +1,4 @@
-let initialCards = [
+const initialCards = [
   {
     name: "Yosemite Valley",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
@@ -25,23 +25,25 @@ let initialCards = [
   },
 ];
 
-function getCardElement(data) {
-  let cardContainer = document.querySelector(".elements__container");
-  const cardTemplete = document.querySelector("#card-templete").content;
+const cardTemplete = document.querySelector("#card-templete").content;
 
-  for (let i = 0; i < data.length; i++) {
-    const cardElement = cardTemplete
-      .querySelector(".elements__cards")
-      .cloneNode(true);
-    cardElement.querySelector(".elements__image").src = data[i].link;
-    cardElement.querySelector(".elements__image").alt = data[i].name;
-    cardElement.querySelector(".elements__title").textContent = data[i].name;
-    cardContainer.append(cardElement);
-  }
-  return cardContainer;
+function getCardElement(data) {
+  const cardElement = cardTemplete
+    .querySelector(".elements__cards")
+    .cloneNode(true);
+  const cardImage = cardElement.querySelector(".elements__image");
+  cardImage.src = data.link;
+  cardImage.alt = data.name;
+  cardElement.querySelector(".elements__title").textContent = data.name;
+  return cardElement;
 }
 
-getCardElement(initialCards);
+const cardContainer = document.querySelector(".elements__container");
+
+for (let i = 0; i < initialCards.length; i++) {
+  const cardElements = getCardElement(initialCards[i]);
+  cardContainer.append(cardElements);
+}
 
 const editButton = document.querySelector(".profile__edit-button");
 const modal = document.querySelector(".modal");
@@ -68,13 +70,13 @@ function closeModal() {
 
 closeButton.addEventListener("click", closeModal);
 
-const formElement = document.querySelector(".modal__form");
+const formElement = document.forms["profile-form"];
 
 function saveForm(evt) {
   evt.preventDefault();
   profileName.textContent = inputName.value;
   profileJob.textContent = inputJob.value;
-  modal.classList.remove("modal_opened");
+  closeModal();
 }
 
 formElement.addEventListener("submit", saveForm);
