@@ -54,20 +54,30 @@
       <div class="modal__container">
         <h2 class="modal__title">Edit profile</h2>
         <button class="modal__close" id="modal__edit_close"></button>
-        <form class="modal__form" id="profile-form">
+        <form class="modal__form" id="profile-form" novalidate>
           <fieldset class="modal__fieldset">
             <input
               type="text"
               class="modal__input modal__input_name"
               name="title"
               placeholder="Name"
+              minlength="2"
+              maxlength="40"
+              required
+              id="name-input"
             />
+            <span class="name-input-error modal__input-error"></span>
             <input
               type="text"
               class="modal__input modal__input_job"
               name="description"
               placeholder="Description"
+              minlength="2"
+              maxlength="200"
+              required
+              id="job-input"
             />
+            <span class="job-input-error modal__input-error"></span>
           </fieldset>
           <button class="modal__button-save" type="submit">Save</button>
         </form>
@@ -78,7 +88,7 @@
       <div class="modal__container">
         <h2 class="modal__title">New Place</h2>
         <button class="modal__close" id="modal__add_close"></button>
-        <form class="modal__form" id="new-card">
+        <form class="modal__form" id="new-card" novalidate>
           <fieldset class="modal__fieldset">
             <input
               type="text"
@@ -86,14 +96,21 @@
               name="title"
               placeholder="Title"
               required
+              id="title-input"
+              minlength="1"
+              maxlength="30"
+              required
             />
+            <span class="title-input-error modal__input-error"></span>
             <input
-              type="text"
+              type="url"
               class="modal__input modal__input_link"
               name="image_link"
               placeholder="Image link"
               required
+              id="image-input"
             />
+            <span class="image-input-error modal__input-error"></span>
           </fieldset>
           <button class="modal__button-save" type="submit">Create</button>
         </form>
@@ -112,5 +129,6 @@
     </div>
 
     <script src="./scripts/index.js" defer></script>
+    <script src="./scripts/validate.js" defer></script>
   </body>
 </html>

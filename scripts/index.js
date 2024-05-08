@@ -119,7 +119,7 @@ addCloseButton.addEventListener("click", () => {
   closeModal(addModal);
 });
 
-const formElement = document.forms["profile-form"];
+const formProfile = document.forms["profile-form"];
 
 function saveProfileForm(evt) {
   evt.preventDefault();
@@ -128,7 +128,7 @@ function saveProfileForm(evt) {
   closeModal(editModal);
 }
 
-formElement.addEventListener("submit", saveProfileForm);
+formProfile.addEventListener("submit", saveProfileForm);
 
 const newCard = document.forms["new-card"];
 
