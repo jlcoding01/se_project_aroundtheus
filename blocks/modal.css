@@ -99,7 +99,7 @@
   cursor: pointer;
 }
 
-.modal__button-save:hover {
+.modal__button-save:hover:not(:disabled) {
   opacity: 80%;
 }
 
@@ -182,4 +182,5 @@
   background-color: #ffffff;
   opacity: 20%;
   color: #000;
+  cursor: default;
 }

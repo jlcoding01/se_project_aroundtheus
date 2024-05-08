@@ -25,12 +25,29 @@ const initialCards = [
   },
 ];
 
+const closeModalOnRemoteClick = (evt) => {
+  if (evt.target === evt.currentTarget) {
+    closeModal(evt.target);
+  }
+};
+
+const closeModalByEsc = (evt) => {
+  if (evt.key === "Escape") {
+    const openedModal = document.querySelector(".modal_opened");
+    closeModal(openedModal);
+  }
+};
+
 function openModal(modal) {
   modal.classList.add("modal_opened");
+  modal.addEventListener("mousedown", closeModalOnRemoteClick);
+  document.addEventListener("keydown", closeModalByEsc);
 }
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
+  modal.removeEventListener("mousedown", closeModalOnRemoteClick);
+  document.removeEventListener("keydown", closeModalByEsc);
 }
 
 const cardTemplete = document.querySelector("#card-templete").content;
@@ -67,6 +84,7 @@ function getCardElement(data) {
 
   cardImage.addEventListener("click", () => {
     modalImage.src = cardImage.src;
+    modalImage.alt = cardImage.alt;
     modalImageTitle.textContent = cardTitle.textContent;
     openModal(pictureModal);
   });
@@ -143,3 +161,22 @@ function createNewCard(evt) {
 }
 
 newCard.addEventListener("submit", createNewCard);
+
+// const closePopup = () => {
+//   const modals = document.querySelectorAll(".modal");
+//   modals.forEach((modal) => {
+//     modal.addEventListener("mousedown", (evt) => {
+//       if (evt.target.classList.contains("modal")) {
+//         closeModal(modal);
+//       }
+//     });
+
+//     document.addEventListener("keydown", (evt) => {
+//       if (evt.key === "Escape") {
+//         closeModal(modal);
+//       }
+//     });
+//   });
+// };
+
+// closePopup();

@@ -43,9 +43,7 @@ const toggleButtonState = (inputList, buttonElement, config) => {
 };
 
 const setEventListeners = (formElement, config) => {
-  const inputList = Array.from(
-    formElement.querySelectorAll(config.inputSelector)
-  );
+  const inputList = [...formElement.querySelectorAll(config.inputSelector)];
   const buttonElement = formElement.querySelector(config.submitButtonSelector);
   toggleButtonState(inputList, buttonElement, config);
 
@@ -79,22 +77,3 @@ const configObj = {
 };
 
 enableValidation(configObj);
-
-const closePopup = () => {
-  const modals = document.querySelectorAll(".modal");
-  modals.forEach((modal) => {
-    modal.addEventListener("click", (evt) => {
-      if (evt.target.classList.contains("modal")) {
-        closeModal(modal);
-      }
-    });
-
-    document.addEventListener("keydown", (evt) => {
-      if (evt.key === "Escape") {
-        closeModal(modal);
-      }
-    });
-  });
-};
-
-closePopup();
