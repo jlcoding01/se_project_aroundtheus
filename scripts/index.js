@@ -25,6 +25,7 @@ const initialCards = [
   },
 ];
 
+//Create a function for nesting in the adding and removing event listener
 const closeModalOnRemoteClick = (evt) => {
   if (evt.target === evt.currentTarget) {
     closeModal(evt.target);
