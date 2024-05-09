@@ -161,22 +161,3 @@ function createNewCard(evt) {
 }
 
 newCard.addEventListener("submit", createNewCard);
-
-// const closePopup = () => {
-//   const modals = document.querySelectorAll(".modal");
-//   modals.forEach((modal) => {
-//     modal.addEventListener("mousedown", (evt) => {
-//       if (evt.target.classList.contains("modal")) {
-//         closeModal(modal);
-//       }
-//     });
-
-//     document.addEventListener("keydown", (evt) => {
-//       if (evt.key === "Escape") {
-//         closeModal(modal);
-//       }
-//     });
-//   });
-// };
-
-// closePopup();

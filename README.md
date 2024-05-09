@@ -1,4 +1,4 @@
-# Project 3: Around The U.S.
+# Project : Around The U.S.
 
 ### Overview
 
@@ -23,6 +23,8 @@ Good luck and have fun!
 **Project**
 
 Creat a responsive website that fits different screen sizes.
+Handle multiple events to make the website more interactive.
+Interact with DOM Elements for Form Validation.
 
 **Descriptoions**
 
@@ -30,9 +32,11 @@ This websites allow users to post scenery pictures all around U.S. Users can cre
 
 **Techniques**
 
-Html: BEM methdology
+Html: BEM methdology.
 
 CSS: flex, grid, calc function, media quries, hover and other basic css functions.
+
+JavaScript: DOM, Events, Object-oriented programming, Debugging.
 
 **GitHub Pages**
 
