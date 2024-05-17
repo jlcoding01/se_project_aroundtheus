@@ -80,6 +80,10 @@ class FormValidator {
   }
 
   disableButton() {
+    this._buttonElement = this._formElement.querySelector(
+      this._submitButtonSelector
+    );
+
     this._formElement.addEventListener("submit", () => {
       this._buttonElement.classList.add(this._inactiveButtonClass);
       this._buttonElement.setAttribute("disabled", "true");
