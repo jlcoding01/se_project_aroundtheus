@@ -8,6 +8,10 @@ class FormValidator {
     this._inputErrorClass = data.inputErrorClass;
     this._errorClass = data.errorClass;
     this._formElement = formElement;
+    this._inputList = [
+      ...this._formElement.querySelectorAll(this._inputSelector),
+    ];
+    this._buttonElement = formElement.querySelector(data.submitButtonSelector);
   }
 
   _showInputError(inputElement, errorMessage) {
@@ -44,24 +48,14 @@ class FormValidator {
   }
 
   _toggleButtonState() {
-    this._buttonElement = this._formElement.querySelector(
-      this._submitButtonSelector
-    );
-
     if (this._hasInvalidInput()) {
-      this._buttonElement.classList.add(this._inactiveButtonClass);
-      this._buttonElement.setAttribute("disabled", "true");
+      this._disableButton();
     } else {
-      this._buttonElement.classList.remove(this._inactiveButtonClass);
-      this._buttonElement.removeAttribute("disabled");
+      this._enableButton();
     }
   }
 
   _setEventListeners() {
-    this._inputList = [
-      ...this._formElement.querySelectorAll(this._inputSelector),
-    ];
-
     this._toggleButtonState();
 
     this._inputList.forEach((inputElement) => {
@@ -72,27 +66,25 @@ class FormValidator {
     });
   }
 
+  _disableButton() {
+    this._buttonElement.classList.add(this._inactiveButtonClass);
+    this._buttonElement.setAttribute("disabled", "true");
+  }
+
+  _enableButton() {
+    this._buttonElement.classList.remove(this._inactiveButtonClass);
+    this._buttonElement.removeAttribute("disabled");
+  }
+
   enableValidation() {
-    this._formElement.addEventListener("submit", function (evt) {
+    this._formElement.addEventListener("submit", (evt) => {
       evt.preventDefault();
+      this._disableButton();
     });
     this._setEventListeners();
   }
 
-  disableButton() {
-    this._buttonElement = this._formElement.querySelector(
-      this._submitButtonSelector
-    );
-
-    this._formElement.addEventListener("submit", () => {
-      this._buttonElement.classList.add(this._inactiveButtonClass);
-      this._buttonElement.setAttribute("disabled", "true");
-    });
-
-    this._inputList = [
-      ...this._formElement.querySelectorAll(this._inputSelector),
-    ];
-
+  resetValidation() {
     this._inputList.forEach((inputElement) => {
       this._hideInputError(inputElement);
     });

@@ -71,9 +71,14 @@ const handleImageClick = (data) => {
 
 const cardContainer = document.querySelector(".elements__container");
 
+const getCard = (data) => {
+  const cardElement = new Card(data, "#card-templete", handleImageClick);
+  return cardElement.getCardElement();
+};
+
 const renderCard = (data, wrap) => {
-  const card = new Card(data, "#card-templete", handleImageClick);
-  wrap.append(card.getCardElement());
+  const card = getCard(data);
+  wrap.append(card);
 };
 
 initialCards.forEach((data) => {
@@ -95,17 +100,23 @@ const inputJob = document.querySelector(".modal__input_job");
 const inputTitle = document.querySelector(".modal__input_title");
 const inputLink = document.querySelector(".modal__input_link");
 
-const editCloseButton = document.querySelector("#modal__edit_close");
-const addCloseButton = document.querySelector("#modal__add_close");
-
 const formProfile = document.forms["profile-form"];
 const newCard = document.forms["new-card"];
+
+const butttons = document.querySelectorAll(".modal__close");
+
+butttons.forEach((button) => {
+  const modal = button.closest(".modal");
+  button.addEventListener("click", () => {
+    closeModal(modal);
+  });
+});
 
 const clickEditButton = () => {
   inputName.value = profileName.textContent;
   inputJob.value = profileJob.textContent;
   openModal(editModal);
-  profileFormValidator.disableButton();
+  formValidators["profile-form"].resetValidation();
 };
 
 const clickAddButton = () => {
@@ -114,14 +125,6 @@ const clickAddButton = () => {
 
 editButton.addEventListener("click", clickEditButton);
 addButton.addEventListener("click", clickAddButton);
-
-editCloseButton.addEventListener("click", () => {
-  closeModal(editModal);
-});
-
-addCloseButton.addEventListener("click", () => {
-  closeModal(addModal);
-});
 
 const saveProfileForm = (evt) => {
   evt.preventDefault();
@@ -137,19 +140,15 @@ const createNewCard = (evt) => {
   const cardContent = {};
   cardContent.name = inputTitle.value;
   cardContent.link = inputLink.value;
-  const newCardContent = new Card(
-    cardContent,
-    "#card-templete",
-    handleImageClick
-  );
-  cardContainer.prepend(newCardContent.getCardElement());
+  const newCardContent = getCard(cardContent);
+  cardContainer.prepend(newCardContent);
   closeModal(addModal);
   newCard.reset();
 };
 
 newCard.addEventListener("submit", createNewCard);
 
-const configObj = {
+const config = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__button-save",
@@ -158,12 +157,18 @@ const configObj = {
   errorClass: "modal__input-error_active",
 };
 
-const formList = Array.from(document.querySelectorAll(configObj.formSelector));
+const formValidators = {};
 
-formList.forEach((formElement) => {
-  const formValidator = new FormValidator(configObj, formElement);
-  formValidator.enableValidation();
-  formValidator.disableButton();
-});
+const enableValidation = (config) => {
+  const formList = Array.from(document.querySelectorAll(config.formSelector));
 
-const profileFormValidator = new FormValidator(configObj, formProfile);
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(config, formElement);
+    const formName = formElement.getAttribute("id");
+
+    formValidators[formName] = validator;
+    validator.enableValidation();
+  });
+};
+
+enableValidation(config);
