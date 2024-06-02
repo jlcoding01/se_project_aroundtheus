@@ -1,5 +1,3 @@
-// export const inputTitle = document.querySelector(".modal__input_title");
-// export const inputLink = document.querySelector(".modal__input_link");
 export const initialCards = [
   {
     name: "Yosemite Valley",
@@ -27,11 +25,13 @@ export const initialCards = [
   },
 ];
 
-export const cardContainer = document.querySelector(".elements__container");
-
 export const editButton = document.querySelector(".profile__edit-button");
 
 export const addButton = document.querySelector(".profile__add-button");
+
+export const inputName = document.querySelector(".modal__input_name");
+
+export const inputJob = document.querySelector(".modal__input_job");
 
 export const config = {
   formSelector: ".modal__form",

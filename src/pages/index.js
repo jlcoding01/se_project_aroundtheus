@@ -6,48 +6,39 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import {
   initialCards,
-  cardContainer,
   editButton,
   addButton,
   config,
   formValidators,
+  inputName,
+  inputJob,
 } from "../utils/constants.js";
 import "./index.css";
 
-const popupWithImage = new PopupWithImage("#modal__picture");
-
-const popupWithForm = new PopupWithForm(
-  {
-    handleFormSubmit: (data) => {
-      const cardElement = new Card(
-        {
-          data,
-          handleImageClick: () => {
-            popupWithImage.open(data);
-          },
-        },
-        "#card-templete"
-      );
-      cardContainer.prepend(cardElement.getCardElement());
+const createCard = (data) => {
+  const cardElement = new Card(
+    {
+      data,
+      handleImageClick: () => {
+        popupWithImage.open(data);
+      },
     },
-  },
-  "#modal__add"
-);
+    "#card-templete"
+  );
+  return cardElement;
+};
+
+const addCard = (data) => {
+  newSection.addItem(createCard(data).getCardElement());
+};
+
+const popupWithImage = new PopupWithImage("#modal__picture");
 
 const newSection = new Section(
   {
     items: initialCards,
     renderer: (data) => {
-      const cardElement = new Card(
-        {
-          data,
-          handleImageClick: () => {
-            popupWithImage.open(data);
-          },
-        },
-        "#card-templete"
-      );
-      newSection.addItem(cardElement.getCardElement());
+      addCard(data);
     },
   },
   ".elements__container"
@@ -61,20 +52,41 @@ const userInfo = new UserInfo(
   "#modal__edit"
 );
 
+const handleAddSubmit = (data) => {
+  addCard(data);
+};
+
+const handleEdditSubmit = ({ name, job }) => {
+  name = inputName.value;
+  job = inputJob.value;
+  userInfo.setUserInfo({ name, job });
+};
+
+const addFormPopup = new PopupWithForm(
+  { handleFormSubmit: handleAddSubmit },
+  "#modal__add"
+);
+
+const editFormPopup = new PopupWithForm(
+  { handleFormSubmit: handleEdditSubmit },
+  "#modal__edit"
+);
+
 newSection.rendererItems();
 popupWithImage.setEventListeners();
-popupWithForm.setEventListeners();
-userInfo.setEventListeners();
+addFormPopup.setEventListeners();
+editFormPopup.setEventListeners();
 
 editButton.addEventListener("click", () => {
-  userInfo.getUserInfo();
-  userInfo.open();
+  editFormPopup.open();
+  const profileInfo = userInfo.getUserInfo();
+  inputName.value = profileInfo.name;
+  inputJob.value = profileInfo.job;
   formValidators["profile-form"].resetValidation();
 });
 
 addButton.addEventListener("click", () => {
-  popupWithForm.open();
-  formValidators["new-card"].resetValidation();
+  addFormPopup.open();
 });
 
 const enableValidation = (config) => {

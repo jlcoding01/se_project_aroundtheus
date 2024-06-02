@@ -1,6 +1,5 @@
 export default class Popup {
   constructor(popupSelector) {
-    // this._popupSelector = popupSelector;
     this._popupElement = document.querySelector(popupSelector);
   }
 
@@ -9,12 +8,6 @@ export default class Popup {
       this.close();
     }
   };
-
-  //   _handleRemoteClick(evt) {
-  //     if (evt.target === evt.currentTarget) {
-  //       this.close();
-  //     }
-  //   }
 
   setEventListeners() {
     this._closeButton = this._popupElement.querySelector(".modal__close");
@@ -32,16 +25,11 @@ export default class Popup {
 
   open() {
     this._popupElement.classList.add("modal_opened");
-    // this._popupElement.addEventListener("mousedown", this._handleRemoteClick);
     document.addEventListener("keydown", this._handleEscClose);
   }
 
   close() {
     this._popupElement.classList.remove("modal_opened");
-    // this._popupElement.removeEventListener(
-    //   "mousedown",
-    //   this._handleRemoteClick
-    // );
     document.removeEventListener("keydown", this._handleEscClose);
   }
 }
