@@ -25,11 +25,11 @@ const createCard = (data) => {
     },
     "#card-templete"
   );
-  return cardElement;
+  return cardElement.getCardElement();
 };
 
 const addCard = (data) => {
-  newSection.addItem(createCard(data).getCardElement());
+  newSection.addItem(createCard(data));
 };
 
 const popupWithImage = new PopupWithImage("#modal__picture");
@@ -56,19 +56,20 @@ const handleAddSubmit = (data) => {
   addCard(data);
 };
 
-const handleEdditSubmit = ({ name, job }) => {
-  name = inputName.value;
-  job = inputJob.value;
-  userInfo.setUserInfo({ name, job });
-};
-
 const addFormPopup = new PopupWithForm(
   { handleFormSubmit: handleAddSubmit },
   "#modal__add"
 );
 
 const editFormPopup = new PopupWithForm(
-  { handleFormSubmit: handleEdditSubmit },
+  {
+    handleFormSubmit: (inputValue) => {
+      const profileInfo = {};
+      profileInfo.name = inputValue.title;
+      profileInfo.job = inputValue.description;
+      userInfo.setUserInfo(profileInfo);
+    },
+  },
   "#modal__edit"
 );
 
