@@ -103,6 +103,10 @@
   opacity: 80%;
 }
 
+.modal__button-confirm {
+  margin-top: 38px;
+}
+
 .modal__picture_container {
   margin: auto;
   position: relative;

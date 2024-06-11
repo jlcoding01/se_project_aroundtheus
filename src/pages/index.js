@@ -14,6 +14,22 @@ import {
   inputJob,
 } from "../utils/constants.js";
 import "./index.css";
+import Api from "../components/Api.js";
+import PopupWithVerify from "../components/PopupWithVerify.js";
+
+const api = new Api("https://around-api.en.tripleten-services.com/v1", {
+  authorization: "57aa7463-f839-44ea-835b-493cff8bea63",
+  "Content-Type": "application/json",
+});
+
+api
+  .getInitialCards()
+  .then((res) => {
+    res.forEach((card) => {
+      addCard(card);
+    });
+  })
+  .catch(console.error);
 
 const createCard = (data) => {
   const cardElement = new Card(
@@ -22,10 +38,11 @@ const createCard = (data) => {
       handleImageClick: () => {
         popupWithImage.open(data);
       },
+      handleDeleteButton,
     },
     "#card-templete"
-  );
-  return cardElement.getCardElement();
+  ).getCardElement();
+  return cardElement;
 };
 
 const addCard = (data) => {
@@ -36,7 +53,7 @@ const popupWithImage = new PopupWithImage("#modal__picture");
 
 const newSection = new Section(
   {
-    items: initialCards,
+    items: [],
     renderer: (data) => {
       addCard(data);
     },
@@ -48,12 +65,23 @@ const userInfo = new UserInfo(
   {
     nameSelector: ".profile__title",
     jobSelector: ".profile__subtitle",
+    avatarSelector: ".profile__avatar",
   },
   "#modal__edit"
 );
 
 const handleAddSubmit = (data) => {
   addCard(data);
+  api.addNewCard(data.name, data.link);
+};
+
+const handleEditSubmit = (inputValue) => {
+  api.editProfile(inputValue.title, inputValue.description).then((data) => {
+    const profileInfo = {};
+    profileInfo.name = data.name;
+    profileInfo.job = data.about;
+    userInfo.setUserInfo(profileInfo);
+  });
 };
 
 const addFormPopup = new PopupWithForm(
@@ -63,12 +91,7 @@ const addFormPopup = new PopupWithForm(
 
 const editFormPopup = new PopupWithForm(
   {
-    handleFormSubmit: (inputValue) => {
-      const profileInfo = {};
-      profileInfo.name = inputValue.title;
-      profileInfo.job = inputValue.description;
-      userInfo.setUserInfo(profileInfo);
-    },
+    handleFormSubmit: handleEditSubmit,
   },
   "#modal__edit"
 );
@@ -103,3 +126,32 @@ const enableValidation = (config) => {
 };
 
 enableValidation(config);
+
+api
+  .getUserInfo()
+  .then((res) => {
+    userInfo.setUserInfo({
+      name: res.name,
+      job: res.about,
+    });
+    userInfo.setUserAvatar(res.avatar);
+  })
+  .catch(console.error);
+
+const deletePopup = new PopupWithVerify("#modal__delete");
+deletePopup.setEventListeners();
+
+const handleDeleteButton = (card) => {
+  console.log(card);
+  deletePopup.open();
+
+  deletePopup.setHandleDeleteMethod(() => {
+    api
+      .deleteCard(card._id)
+      .then(() => {
+        card.removeCardElement();
+        deletePopup.close();
+      })
+      .catch(console.error);
+  });
+};
