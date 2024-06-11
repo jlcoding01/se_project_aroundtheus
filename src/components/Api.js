@@ -58,7 +58,27 @@ export default class Api {
     });
   }
 
-  renderCard(renderer) {
-    return Promise.all(renderer);
+  addLikes(cardId) {
+    return this._getFetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+      method: "PUT",
+      headers: this._header,
+    });
+  }
+
+  removeLikes(cardId) {
+    return this._getFetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+      method: "DELETE",
+      headers: this._header,
+    });
+  }
+
+  updateAvatar(avatar) {
+    return this._getFetch(`${this._baseUrl}/users/me/avatar`, {
+      method: "PATCH",
+      headers: this._header,
+      body: JSON.stringify({
+        avatar,
+      }),
+    });
   }
 }

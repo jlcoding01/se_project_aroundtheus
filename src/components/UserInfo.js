@@ -19,7 +19,7 @@ export default class UserInfo {
     this._profileJob.textContent = job;
   }
 
-  setUserAvatar(link) {
-    this._profileAvatar.src = link;
+  setUserAvatar(avatar) {
+    this._profileAvatar.src = avatar;
   }
 }
