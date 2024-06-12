@@ -27,7 +27,7 @@ api
   .getInitialCards()
   .then((res) => {
     res.forEach((card) => {
-      addCard(card);
+      newSection.appendItem(createCard(card));
     });
   })
   .catch(console.error);
@@ -51,7 +51,9 @@ const handleAddSubmit = (data) => {
   api
     .addNewCard(data.name, data.link)
     .then((cardData) => {
-      addCard(cardData);
+      newSection.prependItem(createCard(cardData));
+      addFormPopup.resetForm();
+      addFormPopup.close();
     })
     .catch((err) => console.error(err))
     .finally(() => {
@@ -77,7 +79,6 @@ const handleEditSubmit = (inputValue) => {
 
 const handleDeleteButton = (card) => {
   deletePopup.open();
-
   deletePopup.setHandleDeleteMethod(() => {
     api
       .deleteCard(card._id)
@@ -85,31 +86,34 @@ const handleDeleteButton = (card) => {
         card.removeCardElement();
         deletePopup.close();
       })
-      .catch(console.error);
+      .catch((err) => console.error(err));
   });
 };
 
 const handleAvatarSubmit = (data) => {
-  api.updateAvatar(data.avatar).then((res) => {
-    userInfo.setUserAvatar(res.avatar);
-  });
+  avatarFormPopup.handleLoadingText(true);
+  api
+    .updateAvatar(data.avatar)
+    .then((res) => {
+      userInfo.setUserAvatar(res.avatar);
+    })
+    .catch((err) => console.error(err))
+    .finally(() => avatarFormPopup.handleLoadingText(false));
 };
 
 const handleLikeButton = (card) => {
-  if (!card.isLiked) {
+  if (card.isLiked()) {
     api
-      .addLikes(card._id)
-      .then(() => {
-        card.isLiked = !card.isLiked;
-        card.toggleLikeElement();
+      .removeLikes(card._id)
+      .then((res) => {
+        card.setIsLiked(res.isLiked);
       })
       .catch((err) => console.error(err));
   } else {
     api
-      .removeLikes(card._id)
-      .then(() => {
-        card.isLiked = !card.isLiked;
-        card.toggleLikeElement();
+      .addLikes(card._id)
+      .then((res) => {
+        card.setIsLiked(res.isLiked);
       })
       .catch((err) => console.error(err));
   }
@@ -131,16 +135,10 @@ const createCard = (data) => {
   return cardElement;
 };
 
-const addCard = (data) => {
-  newSection.addItem(createCard(data));
-};
-
 const newSection = new Section(
   {
     items: [],
-    renderer: (data) => {
-      addCard(data);
-    },
+    renderer: createCard,
   },
   ".elements__container"
 );
@@ -176,7 +174,7 @@ const avatarFormPopup = new PopupWithForm(
 );
 
 //call class method
-newSection.rendererItems();
+// newSection.rendererItems();
 popupWithImage.setEventListeners();
 addFormPopup.setEventListeners();
 editFormPopup.setEventListeners();
