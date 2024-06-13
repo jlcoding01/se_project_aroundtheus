@@ -81,13 +81,17 @@ const handleEditSubmit = (inputValue) => {
 const handleDeleteButton = (card) => {
   deletePopup.open();
   deletePopup.setHandleDeleteMethod(() => {
+    deletePopup.handleLoadingText(true);
     api
       .deleteCard(card._id)
       .then(() => {
         card.removeCardElement();
         deletePopup.close();
       })
-      .catch((err) => console.error(err));
+      .catch((err) => console.error(err))
+      .finally(() => {
+        deletePopup.handleLoadingText(false);
+      });
   });
 };
 
