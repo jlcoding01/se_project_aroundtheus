@@ -70,6 +70,7 @@ const handleEditSubmit = (inputValue) => {
       profileInfo.name = data.name;
       profileInfo.job = data.about;
       userInfo.setUserInfo(profileInfo);
+      editFormPopup.close();
     })
     .catch((err) => console.error(err))
     .finally(() => {
@@ -96,6 +97,8 @@ const handleAvatarSubmit = (data) => {
     .updateAvatar(data.avatar)
     .then((res) => {
       userInfo.setUserAvatar(res.avatar);
+      avatarFormPopup.close();
+      avatarFormPopup.resetForm();
     })
     .catch((err) => console.error(err))
     .finally(() => avatarFormPopup.handleLoadingText(false));
